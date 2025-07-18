@@ -1,13 +1,9 @@
+<script lang="ts" setup></script>
+
 <template>
   <div class="">
-      <h1 class="text-3xl font-bold underline">    Hello world!  </h1>
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
-
-<style>
-
-</style>
+<style></style>
