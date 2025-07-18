@@ -8,21 +8,27 @@ export const useQuestionStore = defineStore('questionStore', {
   state: (): QuestionsState => ({
     questionAmount: 0,
     questionList: null,
-    currentQuestion: null
+    currentQuestion: {
+      question: null,
+      status: 'none',
+    },
   }),
   getters: {
-    getCurrentQuestionsCount(): {position: number, from: number} {
+    getCurrentQuestionsCount(): { position: number; from: number } {
       return {
-        position: this.questionList?.length ?? 0,
-        from: this.questionAmount
+        position: (this.questionList?.length ?? -1) + 1,
+        from: this.questionAmount,
       };
-    }
+    },
   },
   actions: {
-    setQuestionList(mode: Modes['characterLearn'] = 'hiragana', amount: number) {
+    setQuestionList(
+      mode: Modes['characterLearn'] = 'hiragana',
+      amount: number
+    ) {
       const kana = Object.values(kanaJson);
       const clampedAmount = Math.min(kana.length, amount);
-      const characterSet = shuffleArray(kana).slice(0, clampedAmount + 1);
+      const characterSet = shuffleArray(kana).slice(0, clampedAmount);
 
       this.questionAmount = clampedAmount;
 
@@ -40,30 +46,50 @@ export const useQuestionStore = defineStore('questionStore', {
           }));
           break;
         case 'mixed':
-          this.questionList = characterSet.map(character => ({
-            label: character.katakana,
-            answer: character.romaji,
-          }));
-          break;
+          { const halfAmount = Math.floor(clampedAmount / 2);
+          const hiraganaList = characterSet
+            .slice(0, halfAmount)
+            .map(character => ({
+              label: character.hiragana,
+              answer: character.romaji,
+            }));
+          const katakanaList = characterSet
+            .slice(halfAmount, halfAmount * 2)
+            .map(character => ({
+              label: character.katakana,
+              answer: character.romaji,
+            }));
+          this.questionList = shuffleArray([
+            ...hiraganaList,
+            ...katakanaList,
+          ]).slice(0, clampedAmount);
+          break; }
       }
     },
 
     setCurrentQuestion() {
+      this.currentQuestion.status = 'none';
       if (!this.questionList || !this.questionList.length) return;
-      this.currentQuestion = this.questionList.pop()!;
+      this.currentQuestion.question = this.questionList.pop()!;
     },
 
-    answerQuestion(answer: string): boolean | undefined {
-      if (!this.currentQuestion) return undefined;
+    answerQuestion(answer: string) {
+      if (!this.currentQuestion.question) return;
 
-      const answerIsCorrect = this.currentQuestion.answer === answer;
+      const answerIsCorrect = this.currentQuestion.question.answer === answer;
 
-      if (!answerIsCorrect) {
-        this.questionList?.unshift(this.currentQuestion);
-      };
-      this.setCurrentQuestion();
+      this.currentQuestion.status = answerIsCorrect ? 'correct' : 'wrong';
 
-      return answerIsCorrect;
-    }
+      setTimeout(
+        () => {
+          if (!answerIsCorrect && this.currentQuestion.question) {
+            this.questionList?.unshift(this.currentQuestion.question);
+          }
+
+          this.setCurrentQuestion();
+        },
+        answerIsCorrect ? 500 : 2000
+      );
+    },
   },
 });
