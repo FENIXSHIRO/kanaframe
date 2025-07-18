@@ -11,17 +11,6 @@ export default createConfigForNuxt({
       quotes: "single",
     },
   },
-
-  env: {
-    browser: true,
-    node: true,
-  },
-  globals: {
-    ElMessage: "readonly",
-    ElIconEditPen: "readonly",
-    ElButton: "readonly",
-    LazyElButton: "readonly",
-  },
 })
   .append(...tailwind.configs["flat/recommended"], prettierConfig, {
     plugins: {
