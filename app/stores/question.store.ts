@@ -1,6 +1,6 @@
 import type { QuestionsState } from '~~/shared/types/Question';
 
-import kanaJson from '~/assets/data/kana.json';
+import alphabetJson from '~/assets/data/alphabet.json';
 import type { Modes } from '~~/shared/types/Modes';
 import { shuffleArray } from '~~/shared/utils/Shuffle';
 
@@ -26,9 +26,9 @@ export const useQuestionStore = defineStore('questionStore', {
       mode: Modes['characterLearn'] = 'hiragana',
       amount: number
     ) {
-      const kana = Object.values(kanaJson);
-      const clampedAmount = Math.min(kana.length, amount);
-      const characterSet = shuffleArray(kana).slice(0, clampedAmount);
+      const alphabet = Object.values(alphabetJson);
+      const clampedAmount = Math.min(alphabet.length, amount);
+      const characterSet = shuffleArray(alphabet).slice(0, clampedAmount);
 
       this.questionAmount = clampedAmount;
 
