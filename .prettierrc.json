@@ -7,6 +7,6 @@
   "useTabs": false,
   "bracketSpacing": true,
   "arrowParens": "avoid",
-  "endOfLine": "crlf",
+  "endOfLine": "auto",
   "tailwindConfig": "./tailwind.config.js"
 }

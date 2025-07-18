@@ -11,13 +11,21 @@ export default createConfigForNuxt({
       quotes: "single",
     },
   },
+
+  env: {
+    browser: true,
+    node: true,
+  },
+  globals: {
+    ElMessage: "readonly",
+    ElIconEditPen: "readonly",
+    ElButton: "readonly",
+    LazyElButton: "readonly",
+  },
 })
   .append(...tailwind.configs["flat/recommended"], prettierConfig, {
     plugins: {
       prettier,
-    },
-    rules: {
-      "prettier/prettier": ["error", { endOfLine: "crlf" }],
     },
   })
   .prepend()
@@ -105,8 +113,13 @@ export default createConfigForNuxt({
       "vue/no-v-html": "off",
       "vue/no-setup-props-reactivity-loss": "error",
       "vue/no-template-target-blank": "error",
-      "vue/no-this-in-before-route-enter": "error", // без vue-route не использовать
-      "vue/no-undef-properties": "error",
+      "vue/no-this-in-before-route-enter": "error",
+      "vue/no-undef-properties": [
+        "error",
+        {
+          ignores: ["/^El/", "/^LazyEl/"],
+        },
+      ],
       "vue/no-unused-emit-declarations": "error",
       "vue/no-unused-properties": "error",
       "vue/no-unused-refs": "error",
@@ -121,7 +134,6 @@ export default createConfigForNuxt({
       "vue/prefer-separate-static-class": "error",
       "vue/prefer-true-attribute-shorthand": "error",
       "vue/require-macro-variable-name": "error",
-      // 'vue/require-typed-object-prop': 'error',
       "vue/require-typed-ref": "error",
       "vue/v-for-delimiter-style": "error",
       "vue/v-on-handler-style": "off",
