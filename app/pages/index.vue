@@ -16,17 +16,29 @@ const modes = [
 </script>
 
 <template>
-  <div class="grid h-screen w-full grid-rows-3 items-center justify-center">
-    <div class="row-start-2 flex gap-4">
-      <NuxtLink
-        v-for="mode in modes"
-        :key="mode.name"
-        :href="mode.page"
-      >
-        <ElButton class="!rounded-lg !p-8 !text-xl">
-          {{ mode.name }}
-        </ElButton>
-      </NuxtLink>
+  <div class="grid h-screen w-full grid-rows-3 justify-center">
+    <div class="flex translate-y-20 items-center justify-center">
+      <h1 class="text-6xl font-medium">
+        Hiragana and katakana learning app
+      </h1>
+    </div>
+
+    <div class="flex flex-col items-center justify-center gap-4">
+      <h3 class="text-xl">
+        Select mode
+      </h3>
+
+      <div class="flex items-center justify-center gap-4">
+        <NuxtLink
+          v-for="mode in modes"
+          :key="mode.name"
+          :href="mode.page"
+        >
+          <ElButton class="!rounded-lg !p-8 !text-xl">
+            {{ mode.name }}
+          </ElButton>
+        </NuxtLink>
+      </div>
     </div>
 
     <div class="row-start-3 flex flex-col items-center justify-center gap-2">
