@@ -8,13 +8,15 @@ const questionCount = computed(() => questionStore.getCurrentQuestionsCount);
 
 <template>
   <div class="flex flex-col items-center gap-2">
-    <div class="">{{ questionCount.position }} / {{ questionCount.from }}</div>
+    <div class="">
+      {{ questionCount.position }} / {{ questionCount.from }}
+    </div>
 
     <div
-      class="relative flex justify-center rounded-xl border border-gray-200 p-12 text-5xl"
+      class="relative flex justify-center rounded-xl border border-gray-200 p-12 text-5xl dark:border-neutral-600"
       :class="{
-        'border-green-800': questionStore.currentQuestion.status == 'correct',
-        'border-red-900': questionStore.currentQuestion.status == 'wrong',
+        '!border-green-700': questionStore.currentQuestion.status == 'correct',
+        '!border-red-800': questionStore.currentQuestion.status == 'wrong',
       }"
     >
       {{ questionStore.currentQuestion?.question?.label ?? 'none' }}

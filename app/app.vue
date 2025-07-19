@@ -1,6 +1,12 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <NuxtLayout name="default">
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
+
+<style>
+@reference "tailwindcss";
+</style>

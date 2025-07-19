@@ -17,8 +17,12 @@ const modes = [
 
 <template>
   <div class="flex h-screen w-full items-center justify-center gap-4">
-    <NuxtLink v-for="mode in modes" :key="mode.name" :href="mode.page">
-      <div class="hover:border-primary rounded-lg border border-gray-200 p-5">
+    <NuxtLink
+      v-for="mode in modes"
+      :key="mode.name"
+      :href="mode.page"
+    >
+      <div class="hover:border-primary rounded-lg border border-gray-200 p-5 dark:border-neutral-600 dark:text-white">
         {{ mode.name }}
       </div>
     </NuxtLink>

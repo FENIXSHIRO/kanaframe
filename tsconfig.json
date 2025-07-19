@@ -4,5 +4,6 @@
     "compilerOptions": {
     "strict": true,
     "useUnknownInCatchVariables": false,
+    "types": ["element-plus/global"]
   }
 }
