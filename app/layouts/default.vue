@@ -40,7 +40,7 @@ const toggleLocale = () => {
           @click="toggleLocale"
         >
           <span
-            class="fi overflow-clip rounded-sm grayscale-50"
+            class="fi overflow-clip rounded-sm dark:grayscale-50"
             :class="{ 'fi-gb': locale == 'en', 'fi-ru': locale == 'ru' }"
           />
         </ElButton>
