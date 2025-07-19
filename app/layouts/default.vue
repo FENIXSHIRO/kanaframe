@@ -7,7 +7,7 @@ const changeColorMode = useToggle(isDark);
 <template>
   <div class="dark:bg-neutral-900">
     <div class="absolute grid min-h-12 w-full grid-cols-3 items-center">
-      <el-button
+      <ElButton
         class="col-start-3 me-2 w-fit justify-self-end"
         :icon="isDark ? ElIconMoon : ElIconSunny"
         round

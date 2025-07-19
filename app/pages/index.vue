@@ -16,16 +16,34 @@ const modes = [
 </script>
 
 <template>
-  <div class="flex h-screen w-full items-center justify-center gap-4">
-    <NuxtLink
-      v-for="mode in modes"
-      :key="mode.name"
-      :href="mode.page"
-    >
-      <div class="hover:border-primary rounded-lg border border-gray-200 p-5 dark:border-neutral-600 dark:text-white">
-        {{ mode.name }}
+  <div class="grid h-screen w-full grid-rows-3 items-center justify-center">
+    <div class="row-start-2 flex gap-4">
+      <NuxtLink
+        v-for="mode in modes"
+        :key="mode.name"
+        :href="mode.page"
+      >
+        <ElButton class="!rounded-lg !p-8 !text-xl">
+          {{ mode.name }}
+        </ElButton>
+      </NuxtLink>
+    </div>
+
+    <div class="row-start-3 flex flex-col items-center justify-center gap-2">
+      <div class="">
+        View kana
       </div>
-    </NuxtLink>
+
+      <div class="flex gap-2">
+        <NuxtLink href="/kana/hiragana">
+          <ElButton>ひらがな</ElButton>
+        </NuxtLink>
+
+        <NuxtLink href="/kana/katakana">
+          <ElButton>カタカナ</ElButton>
+        </NuxtLink>
+      </div>
+    </div>
   </div>
 </template>
 

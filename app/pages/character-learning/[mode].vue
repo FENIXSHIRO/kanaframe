@@ -28,7 +28,7 @@ questionStore.setCurrentQuestion();
 
       <div class="">
         <NuxtLink href="/">
-          <el-button :icon="ElIconHomeFilled" />
+          <ElButton :icon="ElIconHomeFilled" />
         </NuxtLink>
       </div>
     </div>

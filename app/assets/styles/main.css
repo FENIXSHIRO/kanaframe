@@ -3,5 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-primary: #c91e12
+    --color-primary: #c93b10;
+    --color-lines: #e5e7eb;
+    --color-lines-dark: #525252;
 }

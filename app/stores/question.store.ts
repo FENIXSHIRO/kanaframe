@@ -1,6 +1,6 @@
 import type { QuestionsState } from '~~/shared/types/Question';
 
-import alphabetJson from '~/assets/data/alphabet.json';
+import kanaJson from '~/assets/data/kana.json';
 import type { Modes } from '~~/shared/types/Modes';
 import { shuffleArray } from '~~/shared/utils/Shuffle';
 
@@ -14,7 +14,7 @@ export const useQuestionStore = defineStore('questionStore', {
     },
   }),
   getters: {
-    getCurrentQuestionsCount(): { position: number; from: number } {
+    getCurrentQuestionsCount(): { position: number, from: number } {
       return {
         position: (this.questionList?.length ?? -1) + 1,
         from: this.questionAmount,
@@ -24,11 +24,11 @@ export const useQuestionStore = defineStore('questionStore', {
   actions: {
     setQuestionList(
       mode: Modes['characterLearn'] = 'hiragana',
-      amount: number
+      amount: number,
     ) {
-      const alphabet = Object.values(alphabetJson);
-      const clampedAmount = Math.min(alphabet.length, amount);
-      const characterSet = shuffleArray(alphabet).slice(0, clampedAmount);
+      const kana = Object.values(kanaJson);
+      const clampedAmount = Math.min(kana.length, amount);
+      const characterSet = shuffleArray(kana).slice(0, clampedAmount);
 
       this.questionAmount = clampedAmount;
 
@@ -46,7 +46,7 @@ export const useQuestionStore = defineStore('questionStore', {
           }));
           break;
         case 'mixed':
-          { const halfAmount = Math.floor(clampedAmount / 2);
+        { const halfAmount = Math.floor(clampedAmount / 2);
           const hiraganaList = characterSet
             .slice(0, halfAmount)
             .map(character => ({
@@ -88,7 +88,7 @@ export const useQuestionStore = defineStore('questionStore', {
 
           this.setCurrentQuestion();
         },
-        answerIsCorrect ? 500 : 2000
+        answerIsCorrect ? 500 : 2000,
       );
     },
   },

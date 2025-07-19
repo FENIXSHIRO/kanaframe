@@ -13,7 +13,7 @@ const questionCount = computed(() => questionStore.getCurrentQuestionsCount);
     </div>
 
     <div
-      class="relative flex justify-center rounded-xl border border-gray-200 p-12 text-5xl dark:border-neutral-600"
+      class="border-lines dark:border-lines-dark relative flex justify-center rounded-xl border p-12 text-5xl"
       :class="{
         '!border-green-700': questionStore.currentQuestion.status == 'correct',
         '!border-red-800': questionStore.currentQuestion.status == 'wrong',
@@ -23,7 +23,7 @@ const questionCount = computed(() => questionStore.getCurrentQuestionsCount);
 
       <div
         v-if="questionStore.currentQuestion.status == 'wrong'"
-        class="absolute bottom-3 text-sm text-gray-200"
+        class="absolute bottom-3 text-sm text-gray-500 dark:text-gray-200"
       >
         {{ questionStore.currentQuestion.question?.answer ?? 'none' }}
       </div>
