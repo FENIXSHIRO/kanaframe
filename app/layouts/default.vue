@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 const isDark = useDark();
-
+const { locale, setLocale } = useI18n();
 const changeColorMode = useToggle(isDark);
+
+const toggleLocale = () => {
+  setLocale(locale.value == 'en' ? 'ru' : 'en');
+};
 </script>
 
 <template>
@@ -29,12 +33,25 @@ const changeColorMode = useToggle(isDark);
         </div>
       </div>
 
-      <ElButton
-        class="col-start-3 w-fit justify-self-end"
-        :icon="isDark ? ElIconMoon : ElIconSunny"
-        round
-        @click="changeColorMode()"
-      />
+      <div class="col-start-3 flex justify-self-end">
+        <ElButton
+          class="w-fit"
+          round
+          @click="toggleLocale"
+        >
+          <span
+            class="fi overflow-clip rounded-sm grayscale-50"
+            :class="{ 'fi-gb': locale == 'en', 'fi-ru': locale == 'ru' }"
+          />
+        </ElButton>
+
+        <ElButton
+          class="w-fit"
+          :icon="isDark ? ElIconMoon : ElIconSunny"
+          round
+          @click="changeColorMode()"
+        />
+      </div>
     </div>
     <slot />
   </div>

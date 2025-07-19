@@ -1,15 +1,17 @@
 <script lang="ts" setup>
+const { t } = useI18n();
+
 const modes = [
   {
-    name: 'Hiragana',
+    name: t('home.modes.hiragana'),
     page: 'character-learning/hiragana',
   },
   {
-    name: 'Katakana',
+    name: t('home.modes.katakana'),
     page: 'character-learning/katakana',
   },
   {
-    name: 'Mixed',
+    name: t('home.modes.mixed'),
     page: 'character-learning/mixed',
   },
 ];
@@ -19,13 +21,13 @@ const modes = [
   <div class="grid h-screen w-full grid-rows-3 justify-center">
     <div class="flex translate-y-20 items-center justify-center">
       <h1 class="text-6xl font-medium">
-        Hiragana and katakana learning app
+        {{ t('home.title') }}
       </h1>
     </div>
 
     <div class="flex flex-col items-center justify-center gap-4">
       <h3 class="text-xl">
-        Select mode
+        {{ t('home.selectMode') }}
       </h3>
 
       <div class="flex items-center justify-center gap-4">
@@ -43,7 +45,7 @@ const modes = [
 
     <div class="row-start-3 flex flex-col items-center justify-center gap-2">
       <div class="">
-        View kana
+        {{ t('home.viewkana') }}
       </div>
 
       <div class="flex gap-2">

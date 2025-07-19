@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "Hiragana and katakana learning app",
+    "selectMode": "Select mode",
+    "viewkana": "View kana table",
+    "modes": {
+      "hiragana": "Hiragana",
+      "katakana": "Katakana",
+      "mixed": "Mixes"
+    }
+  }
+}
