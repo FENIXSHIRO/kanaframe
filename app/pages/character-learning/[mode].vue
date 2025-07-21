@@ -13,7 +13,7 @@ const currentMode: Modes['characterLearn'] = route.params.mode as any;
 
 const isDebugMode = localStorage.getItem('isDebug');
 
-if (!questionStore.questionList) {
+if (!questionStore.questionList || questionStore.currentMode !== currentMode) {
   questionStore.startNewSurvey(currentMode, 20);
 }
 </script>
