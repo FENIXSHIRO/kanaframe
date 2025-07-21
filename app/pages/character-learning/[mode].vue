@@ -4,6 +4,7 @@ import CharacterViewport from '~/components/CharacterViewport.vue';
 import { useQuestionStore } from '~/stores/question.store';
 
 const route = useRoute();
+const { t } = useI18n();
 const questionStore = useQuestionStore();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,9 +17,9 @@ questionStore.setCurrentQuestion();
     <div class="mx-auto grid h-screen w-1/2 grid-cols-1 grid-rows-3 pt-12">
       <div class="flex flex-col items-center justify-center">
         <h1 class="text-4xl font-bold">
-          Character learn
+          {{ t("characterLearn.title") }}
         </h1>
-        <span class="text-lg">mode: {{ route.params.mode }}</span>
+        <span class="text-lg">{{ t("characterLearn.mode") }} : {{ t(`characterLearn.modes.${route.params.mode}`) }}</span>
       </div>
 
       <div class="flex flex-col justify-center gap-6">

@@ -6,7 +6,16 @@
     "modes": {
       "hiragana": "Hiragana",
       "katakana": "Katakana",
-      "mixed": "Mixes"
+      "mixed": "Mixed"
+    }
+  },
+  "characterLearn": {
+    "title": "Character learn",
+    "mode": "Mode",
+    "modes": {
+      "hiragana": "hiragana",
+      "katakana": "katakana",
+      "mixed": "mixed"
     }
   }
 }

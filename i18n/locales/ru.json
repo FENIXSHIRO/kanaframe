@@ -8,5 +8,14 @@
       "katakana": "Катакана",
       "mixed": "Смешанный"
     }
+  },
+   "characterLearn": {
+    "title": "Изучение каны",
+    "mode": "Режим",
+    "modes": {
+      "hiragana": "хирагана",
+      "katakana": "катакана",
+      "mixed": "смешанный"
+    }
   }
 }
