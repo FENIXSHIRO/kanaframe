@@ -2,14 +2,18 @@
 import AnswerInput from '~/components/AnswerInput.vue';
 import CharacterViewport from '~/components/CharacterViewport.vue';
 import { useQuestionStore } from '~/stores/question.store';
+import type { Modes } from '~~/shared/types/Modes';
 
 const route = useRoute();
 const { t } = useI18n();
 const questionStore = useQuestionStore();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-questionStore.setQuestionList(route.params.mode as any, 20);
-questionStore.setCurrentQuestion();
+const currentMode: Modes['characterLearn'] = route.params.mode as any;
+
+if (!questionStore.questionList) {
+  questionStore.startNewSurvey(currentMode, 2);
+}
 </script>
 
 <template>
@@ -24,6 +28,7 @@ questionStore.setCurrentQuestion();
 
       <div class="flex flex-col justify-center gap-6">
         <CharacterViewport />
+
         <AnswerInput />
       </div>
 

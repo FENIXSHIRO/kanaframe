@@ -6,18 +6,25 @@ import { shuffleArray } from '~~/shared/utils/Shuffle';
 
 export const useQuestionStore = defineStore('questionStore', {
   state: (): QuestionsState => ({
-    questionAmount: 0,
     questionList: null,
+    currentMode: 'hiragana',
     currentQuestion: {
       question: null,
       status: 'none',
     },
+    listState: {
+      questionAmount: 0,
+      correct: 0,
+      wrong: 0,
+    },
   }),
   getters: {
     getCurrentQuestionsCount(): { position: number, from: number } {
+      const currentQuestionCount = this.currentQuestion.question ? 1 : 0;
+
       return {
-        position: (this.questionList?.length ?? -1) + 1,
-        from: this.questionAmount,
+        position: (this.questionList?.length ?? -1) + currentQuestionCount,
+        from: this.listState.questionAmount,
       };
     },
   },
@@ -30,7 +37,13 @@ export const useQuestionStore = defineStore('questionStore', {
       const clampedAmount = Math.min(kana.length, amount);
       const characterSet = shuffleArray(kana).slice(0, clampedAmount);
 
-      this.questionAmount = clampedAmount;
+      this.currentMode = mode;
+
+      this.listState = {
+        questionAmount: clampedAmount,
+        correct: 0,
+        wrong: 0,
+      };
 
       switch (mode) {
         case 'hiragana':
@@ -67,10 +80,37 @@ export const useQuestionStore = defineStore('questionStore', {
       }
     },
 
+    finishSurvey() {
+      this.listState.questionAmount = 0;
+
+      this.currentQuestion = {
+        question: null,
+        status: 'none',
+      };
+    },
+
     setCurrentQuestion() {
       this.currentQuestion.status = 'none';
-      if (!this.questionList || !this.questionList.length) return;
+
+      if (!this.questionList) return;
+
+      if (!this.questionList.length) {
+        this.finishSurvey();
+        return;
+      }
+
       this.currentQuestion.question = this.questionList.pop()!;
+    },
+
+    startNewSurvey(mode: Modes['characterLearn'] = 'hiragana',
+      amount: number) {
+      this.setQuestionList(mode, amount);
+      this.setCurrentQuestion();
+    },
+
+    restartSurvey(amount: number) {
+      this.setQuestionList(this.currentMode, amount);
+      this.setCurrentQuestion();
     },
 
     answerQuestion(answer: string) {
@@ -84,8 +124,10 @@ export const useQuestionStore = defineStore('questionStore', {
         () => {
           if (!answerIsCorrect && this.currentQuestion.question) {
             this.questionList?.unshift(this.currentQuestion.question);
+            this.listState.wrong++;
           }
 
+          this.listState.correct++;
           this.setCurrentQuestion();
         },
         answerIsCorrect ? 500 : 2000,

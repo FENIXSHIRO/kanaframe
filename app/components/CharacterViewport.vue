@@ -4,12 +4,26 @@ import { useQuestionStore } from '~/stores/question.store';
 const questionStore = useQuestionStore();
 
 const questionCount = computed(() => questionStore.getCurrentQuestionsCount);
+
+const resumeStatus = computed(() => {
+  if (questionStore.listState.correct > questionStore.listState.wrong) return '😸';
+  if (questionStore.listState.correct < questionStore.listState.wrong) return '😿';
+  return '😾';
+});
 </script>
 
 <template>
   <div class="flex flex-col items-center gap-2">
-    <div class="">
+    <div v-if="questionCount.position && questionCount.from">
       {{ questionCount.position }} / {{ questionCount.from }}
+    </div>
+
+    <div
+      v-else
+      class="flex gap-2"
+    >
+      <span>✅ <span class="text-green-700">{{ questionStore.listState.correct }}</span></span>
+      <span>❌ <span class="text-red-800">{{ questionStore.listState.wrong }}</span></span>
     </div>
 
     <div
@@ -19,7 +33,7 @@ const questionCount = computed(() => questionStore.getCurrentQuestionsCount);
         '!border-red-800': questionStore.currentQuestion.status == 'wrong',
       }"
     >
-      {{ questionStore.currentQuestion?.question?.label ?? 'none' }}
+      {{ questionStore.currentQuestion?.question?.label ?? resumeStatus }}
 
       <div
         v-if="questionStore.currentQuestion.status == 'wrong'"
