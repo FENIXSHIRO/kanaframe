@@ -12,7 +12,7 @@ const questionStore = useQuestionStore();
 const currentMode: Modes['characterLearn'] = route.params.mode as any;
 
 if (!questionStore.questionList) {
-  questionStore.startNewSurvey(currentMode, 2);
+  questionStore.startNewSurvey(currentMode, 20);
 }
 </script>
 

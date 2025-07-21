@@ -4,10 +4,12 @@ const { t } = useI18n();
 const modes = [
   {
     name: t('home.modes.hiragana'),
+    underline: 'ひらがな',
     page: 'character-learning/hiragana',
   },
   {
     name: t('home.modes.katakana'),
+    underline: 'カタカナ',
     page: 'character-learning/katakana',
   },
   {
@@ -36,8 +38,14 @@ const modes = [
           :key="mode.name"
           :href="mode.page"
         >
-          <ElButton class="!rounded-lg !p-8 !text-xl">
-            {{ mode.name }}
+          <ElButton class="group !rounded-lg !p-8 !text-xl">
+            <div class="relative flex justify-center">
+              {{ mode.name }}
+              <div
+                v-if="mode.underline"
+                class="group-hover:text-primary absolute bottom-[-13px] text-xs text-neutral-500"
+              >{{ mode.underline }}</div>
+            </div>
           </ElButton>
         </NuxtLink>
       </div>
