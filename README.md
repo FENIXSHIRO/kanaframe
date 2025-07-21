@@ -18,4 +18,8 @@ Hiragana and Katakana Learning App is a beginner-friendly tool designed to help 
 - Yōon learning
 
 - Selectable answer mode
+  
+- Saveable learning progression
+  
+- Offline mode
 
