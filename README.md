@@ -1,75 +1,21 @@
-# Nuxt Minimal Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[![Nuxt - 4.0.0](https://img.shields.io/badge/Nuxt-4.0.0-00DC82?logo=nuxt&logoColor=%2300DC82)](https://github.com/nuxt/nuxt)
 
-## Setup
+[![TailwindCSS - ^4.1.11](https://img.shields.io/badge/TailwindCSS-^4.1.11-06B6D4?logo=tailwindcss&logoColor=%2306B6D4)](https://github.com/tailwindlabs/tailwindcss)
 
-Make sure to install dependencies:
+# KANAFRAME
 
-```bash
-# npm
-npm install
+Hiragana and Katakana Learning App is a beginner-friendly tool designed to help users learn the two basic Japanese syllabaries.
 
-# pnpm
-pnpm install
 
-# yarn
-yarn install
+## Screenshots
 
-# bun
-bun install
-```
+![App Screenshot](.media/app.jpg)
 
-## Development Server
 
-Start the development server on `http://localhost:3000`:
+## Roadmap
 
-```bash
-# npm
-npm run dev
+- Yōon learning
 
-# pnpm
-pnpm dev
+- Selectable answer mode
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
