@@ -23,6 +23,17 @@ const toggleGroup = (groupKey: string) => {
   }
 };
 
+const toggleAll = () => {
+  const allKeys = Object.keys(groups);
+
+  if (selectedGroups.value.length == allKeys.length) {
+    selectedGroups.value = [];
+    return;
+  }
+
+  selectedGroups.value = allKeys;
+};
+
 const backToModes = () => {
   emit('backToModes');
 };
@@ -35,8 +46,8 @@ const backToModes = () => {
       <div
         v-for="group, groupKey in groups"
         :key="`group-${groupKey}`"
-        class="hover:border-primary/30 active:border-primary flex gap-1 rounded-lg border p-1 px-4 transition-all duration-100 ease-in-out select-none"
-        :class="{ 'bg-primary-bg-dark border-primary-lines text-primary': selectedGroups.includes(groupKey), 'border-lines dark:border-lines-dark': !selectedGroups.includes(groupKey) }"
+        class="hover:border-primary/50 active:border-primary flex gap-1 rounded-lg border p-1 px-4 transition-all duration-100 ease-in-out select-none"
+        :class="{ 'bg-primary-bg dark:bg-primary-bg-dark border-primary/30 text-primary': selectedGroups.includes(groupKey), 'border-lines dark:border-lines-dark': !selectedGroups.includes(groupKey) }"
         @click="toggleGroup(groupKey)"
       >
         <div
@@ -47,6 +58,14 @@ const backToModes = () => {
           <span>{{ character }}</span>
           <span v-if="(characterIndex + 1) !== group.length">,</span>
         </div>
+      </div>
+
+      <div class="flex w-full">
+        <ElButton
+          :icon="ElIconSwitch"
+          class="w-full !rounded-lg !py-1"
+          @click="toggleAll"
+        />
       </div>
     </div>
 
@@ -65,7 +84,7 @@ const backToModes = () => {
 
       <ElButton
         class=""
-        :icon="ElIconRight"
+        :icon="ElIconDelete"
       />
     </div>
   </div>
