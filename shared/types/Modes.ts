@@ -1,4 +1,4 @@
 export type Modes = {
-    characterLearn: 'hiragana' | 'katakana' | 'mixed'
-    answerMode: 'input' | 'options'
-}
+  characterLearn: 'hiragana' | 'katakana' | 'mixed',
+  answerMode: 'input' | 'options'
+};

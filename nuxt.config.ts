@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
     },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
   css: ['~/assets/styles/main.css', 'flag-icons/css/flag-icons.min.css'],
 

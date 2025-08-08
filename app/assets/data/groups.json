@@ -1,0 +1,13 @@
+{
+    "vowels": ["a", "i", "u", "e", "o"],
+    "k": ["ka", "ki", "ku", "ke", "ko"],
+    "s": ["sa", "shi", "su", "se", "so"],
+    "t": ["ta", "chi", "tsu", "te", "to"],
+    "n": ["na", "ni", "nu", "ne", "no"],
+    "h": ["ha", "hi", "fu", "he", "ho"],
+    "m": ["ma", "mi", "mu", "me", "mo"],
+    "y": ["ya", "yu", "yo"],
+    "r": ["ra", "ri", "ru", "re", "ro"],
+    "w": ["wa", "wo"],
+    "n_consonant": ["n"]
+}
